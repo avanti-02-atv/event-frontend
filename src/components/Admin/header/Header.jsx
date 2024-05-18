@@ -1,7 +1,7 @@
 export default function Header() {
 
   return (
-    <header className="bg-neutral-50">
+    <header className="w-screen bg-neutral-50 h-1/6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="">
           <h3 className="text-4xl font-black"><span className="text-orange-300">Event</span>Hub</h3>
