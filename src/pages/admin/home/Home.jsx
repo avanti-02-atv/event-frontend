@@ -1,16 +1,13 @@
+import { CalendarDaysIcon, MapIcon, TagIcon, UsersIcon } from "@heroicons/react/24/outline";
+import CardItem from '../../../components/Admin/cardItem/CardItem';
 import Footer from "../../../components/Admin/footer/Footer";
 import Header from "../../../components/Admin/header/Header";
-import CardItem from '../../../components/Admin/cardItem/CardItem';
-import { UsersIcon } from "@heroicons/react/24/outline";
-import { CalendarDaysIcon } from "@heroicons/react/24/outline";
-import { TagIcon } from "@heroicons/react/24/outline";
-import { MapIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   return (
-    <div className="flex flex-rows flex-wrap h-screen">
+    <div className="flex flex-row flex-wrap h-screen w-screen">
       <Header />
-      <div className="flex flex-rows flex-wrap h-4/6 w-screen justify-center items-center space-x-8">
+      <div className="flex flex-col sm:flex-row sm:h-4/6 w-screen justify-center items-center m-8 sm:m-0 sm:space-x-4 lg:space-x-8">
         <div>
           <CardItem name="Eventos">
             <CalendarDaysIcon className="size-20 text-orange-300 group-hover:text-white" />
