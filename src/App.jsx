@@ -3,6 +3,8 @@ import Home from "./pages/admin/home/Home";
 import Sobre from "./pages/user/sobre/Sobre";
 import { LoginForm } from "./pages/authentication/LoginForm";
 import { RegisterForm } from "./pages/authentication/RegisterForm";
+import Categoria from "./pages/admin/categoria/Categoria";
+import CategoriaEdit from "./pages/admin/categoria/CategoriaEdit";
 
 function App() {
 
@@ -14,6 +16,9 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/admin/home" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
+          <Route path="/admin/categoria" element={<Categoria />} />
+          <Route path="/admin/form-categoria" element={<CategoriaEdit />} />
+          <Route path="/admin/form-categoria/:id" element={<CategoriaEdit />} />
         </Routes>
       </BrowserRouter>
     </>
