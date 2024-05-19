@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/admin/home/Home";
 import Sobre from "./pages/user/sobre/Sobre";
+import { LoginForm } from "./pages/authentication/LoginForm";
+import { RegisterForm } from "./pages/authentication/RegisterForm";
 import Categoria from "./pages/admin/categoria/Categoria";
 import CategoriaEdit from "./pages/admin/categoria/CategoriaEdit";
 
@@ -10,6 +12,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
           <Route path="/admin/home" element={<Home />} />
           <Route path="/sobre" element={<Sobre />} />
           <Route path="/admin/categoria" element={<Categoria />} />
