@@ -10,7 +10,6 @@ export default function Header({children}) {
           {children}
         </div>
       </nav>
-
     </header>
   )
 }
