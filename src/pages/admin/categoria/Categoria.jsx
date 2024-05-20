@@ -23,12 +23,14 @@ export default function Categoria(){
   }
 
   function filter() {
-    const filtered = categorias.filter((categoria) =>
-      Object.values(categoria).some((value) =>
-        value.toString().toLowerCase().includes(search.toLowerCase())
-      )
-    );  
-    setCategoriasRender(filtered);
+    if(categorias){
+      const filtered = categorias.filter((categoria) =>
+        Object.values(categoria).some((value) =>
+          value.toString().toLowerCase().includes(search.toLowerCase())
+        )
+      );  
+      setCategoriasRender(filtered);
+    }
   }
 
   function handleSearch(event) {
@@ -61,7 +63,11 @@ export default function Categoria(){
 
   return(
     <div className="overflow-x-hidden flex flex-col justify-between items-center w-screen h-screen max-w-full">
-      <Header />
+      <Header>
+        <button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300">
+            Sair
+        </button>
+      </Header>
       <div className="mt-8 w-screen">
         <Pesquisa search={search}  handleSearch={handleSearch}/>
       </div>
@@ -79,7 +85,7 @@ export default function Categoria(){
         } 
       </div>
       <div className="w-screen flex justify-center">
-        <button className="px-6 py-2 bg-orange-300 rounded-md mb-16" onClick={() => {navigate("/admin/form-categoria")}}>
+        <button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300 mb-16" onClick={() => {navigate("/admin/form-categoria")}}>
           Adicionar Categoria
         </button>
       </div>

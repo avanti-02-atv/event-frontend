@@ -4,7 +4,7 @@ export default function Pesquisa({search, handleSearch}) {
 
   return (
     <div className="flex mb-3 justify-center w-full">
-        <div className="mb-4 flex w-full justify-center items-stretch w-2/4">
+        <div className="mb-4 flex justify-center items-stretch w-2/4">
             <input
               value={search}
               onChange={handleSearch}
