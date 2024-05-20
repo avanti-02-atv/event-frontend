@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createLocal, getLocalById, updateLocais } from "../../../service/LocalService";
+import InputMask from 'react-input-mask';
 
 export default function FormLocal() {
   const [nome, setNome] = useState("");
@@ -77,8 +78,9 @@ export default function FormLocal() {
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
               CEP
             </label>
-            <input
+            <InputMask 
               type="text"
+              mask="99999-999"
               value={CEP}
               onChange={(event) => setCEP(event.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

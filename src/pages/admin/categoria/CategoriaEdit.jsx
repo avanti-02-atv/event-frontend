@@ -1,6 +1,6 @@
 import Footer from "../../../components/Admin/footer/Footer";
 import Header from "../../../components/Admin/header/Header";
-import FormLocal from "../../../components/Admin/locais/FormLocal";
+import FormCategoria from "../../../components/Admin/categoria/FormCategoria";
 
 export default function CategoriaEdit() {
   return (
@@ -11,7 +11,7 @@ export default function CategoriaEdit() {
         </button>
       </Header>
       <div className="p-4 flex-1 flex justify-center items-center overflow-y-auto">
-        <FormLocal />
+        <FormCategoria />
       </div>
       <Footer />
     </div>
