@@ -1,19 +1,19 @@
 import Footer from "../../../components/Admin/footer/Footer";
 import Header from "../../../components/Admin/header/Header";
-import FormLocal from "../../../components/Admin/locais/FormLocal";
+import LocalForm from "../../../components/Admin/locais/FormLocal";
 
 export default function CategoriaEdit() {
-  return (
-    <div className="h-screen w-screen flex flex-col justify-between">
+  return(
+    <div className="h-screen w-screen overflow-x-hidden">
       <Header>
         <button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300">
-          Sair
+            Sair
         </button>
       </Header>
-      <div className="p-4 flex-1 flex justify-center items-center overflow-y-auto">
-        <FormLocal />
+      <div className="p-12 sm:h-4/6 flex justify-center items-center">
+        <LocalForm />
       </div>
       <Footer />
     </div>
-  );
+  )
 }

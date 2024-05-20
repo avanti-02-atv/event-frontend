@@ -5,6 +5,8 @@ import { LoginForm } from "./pages/authentication/LoginForm";
 import { RegisterForm } from "./pages/authentication/RegisterForm";
 import Categoria from "./pages/admin/categoria/Categoria";
 import CategoriaEdit from "./pages/admin/categoria/CategoriaEdit";
+import Local from "./pages/admin/local/Local";
+import LocalEdit from "./pages/admin/local/LocalEdit";
 
 function App() {
 
@@ -19,6 +21,9 @@ function App() {
           <Route path="/admin/categoria" element={<Categoria />} />
           <Route path="/admin/form-categoria" element={<CategoriaEdit />} />
           <Route path="/admin/form-categoria/:id" element={<CategoriaEdit />} />
+          <Route path="/admin/local" element={<Local />} />
+          <Route path="/admin/form-local" element={<LocalEdit />} />
+          <Route path="/admin/form-local/:id" element={<LocalEdit />} />
         </Routes>
       </BrowserRouter>
     </>
