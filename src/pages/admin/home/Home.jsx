@@ -2,9 +2,10 @@ import { CalendarDaysIcon, MapIcon, TagIcon, UsersIcon } from "@heroicons/react/
 import CardItem from '../../../components/Admin/cardItem/CardItem';
 import Footer from "../../../components/Admin/footer/Footer";
 import Header from "../../../components/Admin/header/Header";
-
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-row flex-wrap h-screen w-screen">
       <Header>
@@ -18,17 +19,17 @@ export default function Home() {
             <CalendarDaysIcon className="size-20 text-orange-300 group-hover:text-white" />
           </CardItem>
         </div>
-        <div>
+        <div onClick={() => navigate("/admin/user")}>
           <CardItem name="Users">
             <UsersIcon className="size-20 text-orange-300 group-hover:text-white" />
           </CardItem>
         </div>
-        <div>
+        <div onClick={() => navigate("/admin/categoria")}>
           <CardItem name="Categorias">
             <TagIcon className="size-20 text-orange-300 group-hover:text-white" />
           </CardItem>
         </div>
-        <div>
+        <div onClick={() => navigate("/admin/local")}>
           <CardItem name="Locais">
             <MapIcon className="size-20 text-orange-300 group-hover:text-white" />
           </CardItem>
