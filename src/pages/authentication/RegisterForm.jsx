@@ -1,6 +1,6 @@
 import Header from "../../components/Admin/header/Header"
 import Footer from "../../components/Admin/footer/Footer";
-import api from "../../service/Api";
+import api from "../../service/api/Api";
 import { useNavigate } from "react-router-dom";
 
 export const RegisterForm = () => {
