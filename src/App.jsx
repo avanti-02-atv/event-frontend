@@ -11,6 +11,8 @@ import Local from "./pages/admin/local/Local";
 import LocalEdit from "./pages/admin/local/LocalEdit";
 import User from "./pages/admin/user/User";
 import UserEdit from "./pages/admin/user/UserEdit";
+import Evento from "./pages/admin/evento/Evento";
+import EventoEdit from "./pages/admin/evento/EventoEdit";
 
 function App() {
 
@@ -33,6 +35,9 @@ function App() {
           <Route path="/admin/user" element={<User />} />
           <Route path="/admin/form-user" element={<UserEdit />} />
           <Route path="/admin/form-user/:id" element={<UserEdit />} />
+          <Route path="/admin/evento" element={<Evento />} />
+          <Route path="/admin/form-evento" element={<EventoEdit />} />
+          <Route path="/admin/form-evento/:id" element={<EventoEdit />} />
           
         </Routes>
       </BrowserRouter>

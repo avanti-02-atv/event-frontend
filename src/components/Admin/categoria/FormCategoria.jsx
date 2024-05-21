@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createCategoria, getCategoriaById, updateCategoria } from "../../../service/CategoriaService";
+import { createCategoria, getCategoriaById, updateCategoria } from "../../../service/api/CategoriaService";
 
 export default function FormCategoria() {
   const [nome, setNome] = useState("");

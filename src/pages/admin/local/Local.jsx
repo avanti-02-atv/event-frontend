@@ -3,8 +3,9 @@ import Header from "../../../components/Admin/header/Header";
 import Pesquisa from "../../../components/Admin/pesquisa/Pesquisa";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { deleteLocal, getLocais } from "../../../service/LocalService";
+import { deleteLocal, getLocais } from "../../../service/api/LocalService";
 import CardLocal from "../../../components/Admin/locais/CardLocal";
+import LougoutButton from "../../../components/button/LogoutButton";
 
 export default function Local() {
   const [locais, setLocais] = useState([]);
@@ -61,10 +62,8 @@ export default function Local() {
 
   return (
     <div className="flex flex-col h-screen max-w-full overflow-hidden">
-      <Header>
-        <button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300">
-          Sair
-        </button>
+      <Header showBackButton>
+        <LougoutButton />
       </Header>
 
       <div className="w-full flex justify-center mt-2">

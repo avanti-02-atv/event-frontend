@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import InputMask from 'react-input-mask';
-import { createUser, getUserById, updateUser } from "../../../service/UserService";
+import { createUser, getUserById, updateUser } from "../../../service/api/UserService";
 
 export default function FormUser() {
   const [name, setName] = useState("");

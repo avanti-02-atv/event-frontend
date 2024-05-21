@@ -1,44 +1,57 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createLocal, getLocalById, updateLocais } from "../../../service/api/LocalService";
-import InputMask from 'react-input-mask';
+import { createEvento, getEventoById, updateEvento } from "../../../service/api/EventoService";
+import { getCategorias } from "../../../service/api/CategoriaService";
+import { getLocais } from "../../../service/api/LocalService";
 
-export default function FormLocal() {
+export default function FormEvento() {
   const [nome, setNome] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [CEP, setCEP] = useState("");
-  const [rua, setRua] = useState("");
-  const [numero, setNumero] = useState(0);
+  const [descricao, setDescricao] = useState("");
+  const [data, setData] = useState("");
+  const [categoriaId, setCategoriaId] = useState("");
+  const [localId, setLocalId] = useState("");
+  const [categorias, setCategorias] = useState([]);
+  const [locais, setLocais] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function setForm() {
+    async function fetchData() {
       try {
+        const categoriasData = await getCategorias();
+        setCategorias(categoriasData);
+        const locaisData = await getLocais();
+        setLocais(locaisData);
+
         if (id) {
-          const local = await getLocalById(id);
-          setNome(local.nome);
-          setCidade(local.cidade);
-          setCEP(local.CEP);
-          setRua(local.rua);
-          setNumero(local.numero);
+          const evento = await getEventoById(id);
+          setNome(evento.nome);
+          setDescricao(evento.descricao);
+
+          // Convertendo a data para o formato "YYYY-MM-DDTHH:MM"
+          const date = new Date(evento.data);
+          const formattedDate = date.toISOString().slice(0, 16);
+          setData(formattedDate);
+
+          setCategoriaId(evento.categoriaId);
+          setLocalId(evento.localId);
         }
       } catch (error) {
-        console.log("Error");
+        console.log("Error fetching data");
       }
     }
-    setForm();
+    fetchData();
   }, [id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = { nome, cidade, CEP, rua, numero };
+    const eventoData = { nome, descricao, data, categoriaId, localId };
     if (id) {
-      await updateLocais(id, data);
+      await updateEvento(id, eventoData);
     } else {
-      await createLocal(data);
+      await createEvento(eventoData);
     }
-    navigate("/admin/local");
+    navigate("/admin/evento");
   };
 
   return (
@@ -50,7 +63,7 @@ export default function FormLocal() {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Nome do Local
+              Nome do Evento
             </label>
             <input
               type="text"
@@ -63,12 +76,12 @@ export default function FormLocal() {
           </div>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Nome da Cidade
+              Descrição
             </label>
             <input
               type="text"
-              value={cidade}
-              onChange={(event) => setCidade(event.target.value)}
+              value={descricao}
+              onChange={(event) => setDescricao(event.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="escreva aqui..."
               required
@@ -76,43 +89,51 @@ export default function FormLocal() {
           </div>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              CEP
+              Data
             </label>
-            <InputMask 
-              type="text"
-              mask="99999-999"
-              value={CEP}
-              onChange={(event) => setCEP(event.target.value)}
+            <input
+              type="datetime-local"
+              value={data}
+              onChange={(event) => setData(event.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="escreva aqui..."
               required
             />
           </div>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Nome da Rua
+              Categoria
             </label>
-            <input
-              type="text"
-              value={rua}
-              onChange={(event) => setRua(event.target.value)}
+            <select
+              value={categoriaId}
+              onChange={(event) => setCategoriaId(event.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="escreva aqui..."
               required
-            />
+            >
+              <option value="">Selecione uma categoria</option>
+              {categorias.map((categoria) => (
+                <option key={categoria.id} value={categoria.id}>
+                  {categoria.nome}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="mb-4">
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Número
+              Local
             </label>
-            <input
-              type="number"
-              value={numero}
-              onChange={(event) => setNumero(parseInt(event.target.value))}
+            <select
+              value={localId}
+              onChange={(event) => setLocalId(event.target.value)}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="escreva aqui..."
               required
-            />
+            >
+              <option value="">Selecione um local</option>
+              {locais.map((local) => (
+                <option key={local.id} value={local.id} title={`${local.CEP} - ${local.cidade} - ${local.nome}`}>
+                  {`${local.CEP} - ${local.cidade} - ${local.nome}`}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="flex justify-between">
             <button
@@ -124,7 +145,7 @@ export default function FormLocal() {
             <button
               type="button"
               className="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-600 font-medium rounded-lg text-sm w-5/12 sm:w-auto sm:px-5 px-2 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-              onClick={() => navigate("/admin/local")}
+              onClick={() => navigate("/admin/evento")}
             >
               Cancelar
             </button>
