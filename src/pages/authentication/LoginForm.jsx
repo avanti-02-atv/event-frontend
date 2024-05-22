@@ -19,8 +19,7 @@ export const LoginForm = () => {
       const response = await api.post('/v1/login', { email, password });
 
       Cookie.set('authorization', `Bearer ${response.data.token}`, { expires: 1 });
-
-      alert('Usuário logado com sucesso!');
+      
       navigate('/home');
     } catch (error) {
       alert('Erro ao logar usuário!');
