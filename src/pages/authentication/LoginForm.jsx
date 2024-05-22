@@ -3,10 +3,25 @@ import Header from "../../components/Admin/header/Header"
 import api from "../../service/api/Api";
 import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
-import { getCurrentUser } from "../../service/utils/auth"
+import { getCurrentUser, isTokenExpired } from "../../service/utils/auth"
+import { useEffect } from "react";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(Cookie.get('authorization')){
+      const expired = isTokenExpired();
+      if(!expired){
+        const decodeToken = getCurrentUser();
+        if(decodeToken.isOrganizer){
+          navigate('/admin/home');
+        } else {
+          navigate('/home');
+        }
+      }
+    }   
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

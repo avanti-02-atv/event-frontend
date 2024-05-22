@@ -9,4 +9,18 @@ export const getCurrentUser = () => {
   return decodedToken;
 };
 
-export default getCurrentUser;
+export const isTokenExpired = () => {
+  const token = Cookie.get('authorization');
+  if (!token) {
+    return true;
+  }
+
+  try {
+    const { exp } = jwtDecode(token);
+    console.log(exp * 1000 + " " + Date.now());
+    return exp * 1000 < Date.now();
+  } catch (e) {
+    console.error('Token decoding failed:', e);
+    return true;
+  }
+};
