@@ -1,18 +1,25 @@
-export default function Header() {
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from "react-router-dom";
+
+export default function Header({ children, showBackButton }) {
+  const navigate = useNavigate();
 
   return (
-    <header className="w-screen bg-neutral-50 h-auto">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="">
+    <header className="w-screen bg-neutral-50 h-1/6">
+      <nav className="sm:mx-auto flex items-center justify-between p-2 sm:p-6 lg:px-8" aria-label="Global">
+        <div className="flex items-center justify-between">
+          {showBackButton && (
+            <ArrowLeftIcon
+              className="size-8 text-black cursor-pointer hidden md:block mr-8"
+              onClick={() => navigate("/admin/home")}
+            />
+          )}
           <h3 className="text-4xl font-black"><span className="text-orange-300">Event</span>Hub</h3>
         </div>
-        <div className="">
-          <button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300">
-            Sair
-          </button>
+        <div>
+          {children}
         </div>
       </nav>
-
     </header>
-  )
+  );
 }
