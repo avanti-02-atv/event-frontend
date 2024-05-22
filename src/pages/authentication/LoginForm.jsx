@@ -3,6 +3,7 @@ import Header from "../../components/Admin/header/Header"
 import api from "../../service/api/Api";
 import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
+import { getCurrentUser } from "../../service/utils/auth"
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -17,10 +18,16 @@ export const LoginForm = () => {
 
     try {
       const response = await api.post('/v1/login', { email, password });
-
-      Cookie.set('authorization', `Bearer ${response.data.token}`, { expires: 1 });
       
-      navigate('/home');
+      Cookie.set('authorization', `Bearer ${response.data.token}`, { expires: 1 });
+
+      const decodeToken = getCurrentUser();
+
+      if(decodeToken.isOrganizer){
+        navigate('/admin/home');
+      } else {
+        navigate('/home');
+      }
     } catch (error) {
       alert('Erro ao logar usuário!');
     }
