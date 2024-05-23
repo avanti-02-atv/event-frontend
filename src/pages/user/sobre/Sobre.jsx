@@ -11,11 +11,11 @@ export default function Sobre() {
 			</Header>
 			<div className="flex w-screen sm:w-4/5 h-4/6 p-6">
 				<div className="w-full h-6/8 bg-neutral-50 rounded-lg shadow-lg p-6">
-					<h1 className="sm:text-6xl text-4xl text-center font-black mb-16">
+					<h1 className="sm:text-6xl mt-14 text-4xl text-center font-black mb-16">
 						<span className="text-orange-300">Event</span>Hub
 					</h1>
-					<h2 className="text-2xl font-black mb-8">Olá <span className="text-orange-300">V</span>isitante,</h2>
-					<p className="text-xl font-black">
+					<h2 className="text-2xl font-black mb-8 text-center">Olá <span className="text-orange-300">V</span>isitante,</h2>
+					<p className="text-xl font-black text-center">
 						Este é um projeto desenvolvido durante o bootcamp da Atlântico.
 						Para mais informações, acesse <a className="text-orange-300" href="https://github.com/avanti-02-atv/event-frontend/tree/main">nosso repositório</a>.
 					</p>
@@ -50,7 +50,7 @@ export default function Sobre() {
 					<span class="text-sm text-gray-500">Full Stack Developer</span>
 					<div class="flex mt-4 md:mt-6">
 						<a href="https://github.com/FThierryDev" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
-						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-blue-800">GitHub</a>
+						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>
 			</div>
@@ -63,7 +63,7 @@ export default function Sobre() {
 					<span class="text-sm text-gray-500">Full Stack Developer</span>
 					<div class="flex mt-4 md:mt-6">
 						<a href="https://github.com/LuizEduardoSC" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
-						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-orange-400 dark:hover:bg-orange-300 ">GitHub</a>
+						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>
 			</div>
@@ -76,7 +76,7 @@ export default function Sobre() {
 					<span class="text-sm text-gray-500">Full Stack Developer</span>
 					<div class="flex mt-4 md:mt-6">
 						<a href="https://github.com/robsonad07" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
-						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-blue-800">GitHub</a>
+						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>
 			</div>
