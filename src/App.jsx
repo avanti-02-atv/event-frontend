@@ -13,6 +13,7 @@ import User from "./pages/admin/user/User";
 import UserEdit from "./pages/admin/user/UserEdit";
 import Evento from "./pages/admin/evento/Evento";
 import EventoEdit from "./pages/admin/evento/EventoEdit";
+import UserContact from "./pages/user/UserContact"
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/admin/home" element={<Home />} />
           <Route path="/events" element={<UserEvent />} />
           <Route path="/sobre" element={<Sobre />} />
+          <Route path="/contact" element={<UserContact />} />
           <Route path="/admin/categoria" element={<Categoria />} />
           <Route path="/admin/form-categoria" element={<CategoriaEdit />} />
           <Route path="/admin/form-categoria/:id" element={<CategoriaEdit />} />
