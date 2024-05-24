@@ -2,7 +2,6 @@ import api from "./Api";
 import Cookie from 'js-cookie';
 
 var authToken = Cookie.get('authorization');
-var authenticate = Cookie.get('authenticate');
 
 export const createEvento = async (data) => {
   try {
@@ -73,9 +72,10 @@ export const searchEventos = async (evento, categoria, local, data) => {
     const response = await api.get('/v1/search', {
       params: { evento, categoria, local, data },
       headers: {
-        'authenticate': `${authenticate}`
+        'authenticate': `${authToken}`
       }
     });
+
 
     return response.data;
   } catch (error) {
