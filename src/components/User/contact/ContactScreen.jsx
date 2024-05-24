@@ -9,7 +9,7 @@ const ContactScreen = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //Adicionar a lógica para enviar a mensagem
+        // Adicionar a lógica para enviar a mensagem
         console.log('Nome:', name);
         console.log('Email:', email);
         console.log('Mensagem:', message);
@@ -20,7 +20,7 @@ const ContactScreen = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
             <UserHeader />
 
             <div className="flex-grow bg-gray-100">

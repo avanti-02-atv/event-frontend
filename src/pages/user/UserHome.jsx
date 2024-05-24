@@ -6,7 +6,7 @@ import UserBody from "../../components/User/body/UserBody";
 
 export default function UserHome() {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen overflow-y-hidden ">
             <UserHeader />
             <div className="bg-neutral-100 flex-grow flex flex-col justify-center items-center space-y-8 p-4">
                 <UserBody />

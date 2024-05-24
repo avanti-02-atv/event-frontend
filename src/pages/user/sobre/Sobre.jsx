@@ -1,14 +1,14 @@
-import Footer from "../../../components/Admin/footer/Footer";
-import Header from "../../../components/Admin/header/Header";
+import UserFooter from "../../../components/User/Footer/UserFooter";
+import UserHeader from "../../../components/User/header/UserHeader";
 
 export default function Sobre() {
 	return (
 		<div className="w-screen h-screen flex flex-row flex-wrap bg-white justify-center items-center">
-			<Header>
+			<UserHeader>
 				<button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300">
 					Sair
 				</button>
-			</Header>
+			</UserHeader>
 			<div className="flex w-screen sm:w-4/5 h-4/6 p-6">
 				<div className="w-full h-6/8 bg-neutral-50 rounded-lg shadow-lg p-6">
 					<h1 className="sm:text-6xl mt-14 text-4xl text-center font-black mb-16">
@@ -81,7 +81,7 @@ export default function Sobre() {
 				</div>
 			</div>
 
-			<Footer />
+			<UserFooter />
 		</div>
 	);
 }
