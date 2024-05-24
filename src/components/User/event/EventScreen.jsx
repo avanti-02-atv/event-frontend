@@ -1,31 +1,26 @@
 import React, { useState } from 'react';
 import UserHeader from '../header/UserHeader';
 import UserFooter from '../Footer/UserFooter';
+import { searchEventos } from "../../../service/api/EventoService";
 
 const EventsScreen = () => {
     // State para armazenar os valores dos campos de pesquisa
     const [searchTerm, setSearchTerm] = useState('');
-    const [category, setCategory] = useState('');
-    const [location, setLocation] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const [categoria, setcategoria] = useState('');
+    const [local, setlocal] = useState('');
+    const [data, setdata] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
     // Função para lidar com a submissão do formulário de pesquisa
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        //Adicionar a lógica para pesquisar os eventos com base nos valores fornecidos
-        console.log('Search Term:', searchTerm);
-        console.log('Category:', category);
-        console.log('Location:', location);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        // Mock de resultados de pesquisa
-        const mockSearchResults = [
-            { id: 1, name: 'Evento 1', category: 'Categoria A', location: 'Local A', startDate: '2024-06-01', endDate: '2024-06-03' },
-            { id: 2, name: 'Evento 2', category: 'Categoria B', location: 'Local B', startDate: '2024-07-10', endDate: '2024-07-12' },
-        ];
-        setSearchResults(mockSearchResults);
+        try {
+            console.log(searchTerm, categoria, local, data);
+            const results = await searchEventos(searchTerm, categoria, local, data);
+            setSearchResults(results);
+        } catch (error) {
+            console.error('Error during search:', error);
+        }
     };
 
     return (
@@ -47,42 +42,32 @@ const EventsScreen = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="category" className="block text-sm font-medium text-gray-700">Categoria</label>
+                            <label htmlFor="categoria" className="block text-sm font-medium text-gray-700">Categoria</label>
                             <input
                                 type="text"
-                                id="category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                id="categoria"
+                                value={categoria}
+                                onChange={(e) => setcategoria(e.target.value)}
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             />
                         </div>
                         <div>
-                            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Local</label>
+                            <label htmlFor="local" className="block text-sm font-medium text-gray-700">Local</label>
                             <input
                                 type="text"
-                                id="location"
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
+                                id="local"
+                                value={local}
+                                onChange={(e) => setlocal(e.target.value)}
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             />
                         </div>
                         <div>
-                            <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Data de Início</label>
+                            <label htmlFor="data" className="block text-sm font-medium text-gray-700">Data e Hora</label>
                             <input
-                                type="date"
-                                id="startDate"
-                                value={startDate}
-                                onChange={(e) => setStartDate(e.target.value)}
-                                className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">Data de Término</label>
-                            <input
-                                type="date"
-                                id="endDate"
-                                value={endDate}
-                                onChange={(e) => setEndDate(e.target.value)}
+                                type="datetime-local"
+                                id="data"
+                                value={data}
+                                onChange={(e) => setdata(e.target.value)}
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             />
                         </div>
@@ -99,11 +84,11 @@ const EventsScreen = () => {
                                         <div className="w-full flex items-center justify-between p-6 space-x-6">
                                             <div className="flex-1 truncate">
                                                 <div className="flex items-center space-x-3">
-                                                    <h3 className="text-gray-900 text-sm font-medium truncate">{event.name}</h3>
+                                                    <h3 className="text-gray-900 text-sm font-medium truncate">{event.nome}</h3>
                                                 </div>
-                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.category}</p>
-                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.location}</p>
-                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.startDate} - {event.endDate}</p>
+                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.categoria}</p>
+                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.local}</p>
+                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.data}</p>
                                             </div>
                                             <div className="ml-4 flex-shrink-0">
                                                 <a href="#" className="font-medium text-orange-300 hover:text-orange-400">
@@ -125,6 +110,3 @@ const EventsScreen = () => {
 };
 
 export default EventsScreen;
-
-
-
