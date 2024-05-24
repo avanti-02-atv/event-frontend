@@ -1,5 +1,3 @@
----
-
 # EventHub: Front-end em React para Gerenciamento de Eventos Culturais
 
 Bem-vindo ao repositório do Front-end do EventHub! Esta plataforma oferece uma solução eficaz para o gerenciamento de eventos culturais, permitindo que os usuários criem, listem, pesquisem e filtrem eventos.
