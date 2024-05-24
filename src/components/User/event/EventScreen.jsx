@@ -1,35 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { format, formatISO } from 'date-fns';
 import UserHeader from '../header/UserHeader';
 import UserFooter from '../Footer/UserFooter';
+import { getEventos, searchEventos } from "../../../service/api/EventoService";
+import { getCategorias } from "../../../service/api/CategoriaService";
+import { getLocais } from "../../../service/api/LocalService";
+import { CalendarIcon } from '@heroicons/react/24/outline';
 
 const EventsScreen = () => {
-    // State para armazenar os valores dos campos de pesquisa
     const [searchTerm, setSearchTerm] = useState('');
-    const [category, setCategory] = useState('');
-    const [location, setLocation] = useState('');
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const [categoria, setCategoria] = useState('');
+    const [local, setLocal] = useState('');
+    const [data, setData] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [locais, setLocais] = useState([]);
+    const [eventos, setEventos] = useState([]);
 
-    // Função para lidar com a submissão do formulário de pesquisa
-    const handleSubmit = (event) => {
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const categoriasData = await getCategorias();
+                setCategorias(categoriasData);
+                const locaisData = await getLocais();
+                setLocais(locaisData);
+                const eventosData = await getEventos();
+                setSearchResults(eventosData);
+                setEventos(eventosData);
+            } catch (error) {
+                console.error('Error fetching data', error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    const handleSearchTermChange = (event) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        //Adicionar a lógica para pesquisar os eventos com base nos valores fornecidos
-        console.log('Search Term:', searchTerm);
-        console.log('Category:', category);
-        console.log('Location:', location);
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        // Mock de resultados de pesquisa
-        const mockSearchResults = [
-            { id: 1, name: 'Evento 1', category: 'Categoria A', location: 'Local A', startDate: '2024-06-01', endDate: '2024-06-03' },
-            { id: 2, name: 'Evento 2', category: 'Categoria B', location: 'Local B', startDate: '2024-07-10', endDate: '2024-07-12' },
-        ];
-        setSearchResults(mockSearchResults);
+        try {
+            const formattedData = data ? formatISO(new Date(data)) : "";
+            const results = await searchEventos(searchTerm, categoria, local, formattedData);
+            console.log(results);
+            setSearchResults(results);
+        } catch (error) {
+            console.error('Error during search:', error);
+        }
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col w-screen min-h-screen">
             <UserHeader />
 
             <div className="flex-grow bg-gray-100">
@@ -42,47 +64,56 @@ const EventsScreen = () => {
                                 type="text"
                                 id="searchTerm"
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onChange={handleSearchTermChange}
+                                list="eventos-list" // Lista de opções
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             />
+                            {/* Lista de opções para autocompletar */}
+                            <datalist id="eventos-list">
+                                {eventos.map((evento) => (
+                                    <option key={evento.id} value={evento.nome} />
+                                ))}
+                            </datalist>
                         </div>
                         <div>
-                            <label htmlFor="category" className="block text-sm font-medium text-gray-700">Categoria</label>
-                            <input
-                                type="text"
-                                id="category"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                            <label htmlFor="categoria" className="block text-sm font-medium text-gray-700">Categoria</label>
+                            <select
+                                id="categoria"
+                                value={categoria}
+                                onChange={(e) => setCategoria(e.target.value)}
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
-                            />
+                            >
+                                <option key="0" value="">Selecione uma categoria</option>
+                                {categorias.map((categoria) => (
+                                    <option key={categoria.id} value={categoria.nome}>
+                                        {categoria.nome}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div>
-                            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Local</label>
-                            <input
-                                type="text"
-                                id="location"
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
+                            <label htmlFor="local" className="block text-sm font-medium text-gray-700">Local</label>
+                            <select
+                                id="local"
+                                value={local}
+                                onChange={(e) => setLocal(e.target.value)}
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
-                            />
+                            >
+                                <option key="0" value="">Selecione um local</option>
+                                {locais.map((local) => (
+                                    <option key={local.id} value={local.nome} title={`${local.CEP} - ${local.cidade} - ${local.nome}`}>
+                                        {`${local.CEP} - ${local.cidade} - ${local.nome}`}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div>
-                            <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Data de Início</label>
+                            <label htmlFor="data" className="block text-sm font-medium text-gray-700">Data e Hora Limite</label>
                             <input
-                                type="date"
-                                id="startDate"
-                                value={startDate}
-                                onChange={(e) => setStartDate(e.target.value)}
-                                className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">Data de Término</label>
-                            <input
-                                type="date"
-                                id="endDate"
-                                value={endDate}
-                                onChange={(e) => setEndDate(e.target.value)}
+                                type="datetime-local"
+                                id="data"
+                                value={data}
+                                onChange={(e) => setData(e.target.value)}
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             />
                         </div>
@@ -90,30 +121,33 @@ const EventsScreen = () => {
                             <button type="submit" className="w-full bg-orange-300 text-black font-semibold py-2 rounded-md hover:bg-black hover:text-orange-300 transition duration-300">Pesquisar</button>
                         </div>
                     </form>
-                    {searchResults.length > 0 && (
+                    {(searchResults && searchResults.length > 0) ? (
                         <div className="mt-8">
                             <h3 className="text-lg font-medium text-gray-900">Resultados da Pesquisa</h3>
                             <ul role="list" className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
                                 {searchResults.map(event => (
                                     <li key={event.id} className="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200 mx-2">
-                                        <div className="w-full flex items-center justify-between p-6 space-x-6">
-                                            <div className="flex-1 truncate">
-                                                <div className="flex items-center space-x-3">
-                                                    <h3 className="text-gray-900 text-sm font-medium truncate">{event.name}</h3>
+                                        <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                                            <div className="p-4">
+                                                <h3 className="text-gray-900 text-lg font-semibold mb-2">{event.nome}</h3>
+                                                <p className="text-gray-600 text-sm line-clamp-3 mb-4">{event.descricao}</p>
+                                                <p className="text-gray-600 text-sm line-clamp-3 mb-4">{event.Categoria.nome}</p>
+                                                <p className="text-gray-600 text-sm line-clamp-3 mb-4">{event.Local.CEP} - {event.Local.cidade} - {event.Local.nome}</p>
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center">
+                                                        <CalendarIcon className="w-4 h-4 mr-1 text-gray-500" />
+                                                        <p className="text-gray-500 text-xs">{format(new Date(event.data), 'dd/MM/yyyy HH:mm')}</p>
+                                                    </div>
                                                 </div>
-                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.category}</p>
-                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.location}</p>
-                                                <p className="mt-1 text-gray-500 text-sm truncate">{event.startDate} - {event.endDate}</p>
-                                            </div>
-                                            <div className="ml-4 flex-shrink-0">
-                                                <a href="#" className="font-medium text-orange-300 hover:text-orange-400">
-                                                    Detalhes
-                                                </a>
                                             </div>
                                         </div>
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                    ) : (
+                        <div className="mt-8 flex items-center justify-center">
+                            <p className="text-lg text-gray-500">Nenhum evento encontrado</p>
                         </div>
                     )}
                 </div>
@@ -125,6 +159,3 @@ const EventsScreen = () => {
 };
 
 export default EventsScreen;
-
-
-
