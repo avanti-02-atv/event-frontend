@@ -1,7 +1,9 @@
 import React from 'react';
 import EventCard from '../eventCard/EventCard';
+import { useNavigate } from "react-router-dom";
 
 export default function UserBody() {
+  const navigate = useNavigate();
   const events = [
     {
       image: 'https://images.unsplash.com/photo-1591492654773-6756035bef6b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -16,8 +18,8 @@ export default function UserBody() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden">
-      <h2 className="text-3xl font-bold mb-8 text-center">Eventos Culturais</h2>
+    <div className="max-w-7xl mx-auto py-12 px-4">
+      <h2 className="text-3xl font-bold mb-8 text-center">Aqui temos</h2>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-2">
         {events.map((event, index) => (
           <EventCard
@@ -27,6 +29,11 @@ export default function UserBody() {
             description={event.description}
           />
         ))}
+      </div>
+      <div className="py-6 flex justify-center">
+        <button onClick={() => navigate("/events")} className="bg-orange-300 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+          Saiba mais
+        </button>
       </div>
     </div>
   );
