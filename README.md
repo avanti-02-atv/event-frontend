@@ -1,8 +1,38 @@
-# React + Vite
+# EventHub: Front-end em React para gerenciamento de eventos culturais.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo ao repositório do Front-end do EventHub! Esta plataforma oferece funcionalidades para o gerenciamento de eventos culturais, permitindo aos usuários criar, listar, pesquisar e filtrar eventos de forma eficaz.
 
-Currently, two official plugins are available:
+# Sobre o EventHub
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O EventHub é uma plataforma desenvolvida para facilitar o gerenciamento de eventos culturais. Nesta plataforma é possível visualizar eventos, procurá-los por categoria, local, data de início e término.
+
+## Como Executar a Aplicação
+
+Siga os passos abaixo para executar a aplicação:
+
+1. Instale todas as dependências com o comando:
+   ```
+   npm install
+   ```
+2. Inicie o projeto com o comando:
+   ```
+   npm run dev
+   ```
+
+3. Acesse a aplicação através do navegador, utilizando o endereço:
+   ```
+   http://localhost:5173/
+   ```
+
+## Ferramentas Utilizadas
+
+- **Tecnologias:** React.js, Tailwind, Axios.
+- **Desenvolvimento:** VS Code.
+
+## Equipe
+- Robson do Amaral Diógenes - Email: robsonad07@gmail.com
+- Fulgêncio Thierry Silva - Email: thierryfulgencio@gmail.com
+- Luiz Eduardo Silva Costa - Email: luizeduardoedd1@gmail.com
+- Dhymas Gabriel da Silva Candeias - Email: dhymas.g@gmail.com
+
+Este sistema foi desenvolvido como um trabalho do bootcamp de desenvolvimento full stack oferecido pelo Avanti em parceria com o Instituto Atlântico.

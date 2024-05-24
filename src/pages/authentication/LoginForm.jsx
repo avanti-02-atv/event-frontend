@@ -3,9 +3,25 @@ import Header from "../../components/Admin/header/Header"
 import api from "../../service/api/Api";
 import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
+import { getCurrentUser, isTokenExpired } from "../../service/utils/auth"
+import { useEffect } from "react";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(Cookie.get('authorization')){
+      const expired = isTokenExpired();
+      if(!expired){
+        const decodeToken = getCurrentUser();
+        if(decodeToken.isOrganizer){
+          navigate('/admin/home');
+        } else {
+          navigate('/home');
+        }
+      }
+    }   
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +33,16 @@ export const LoginForm = () => {
 
     try {
       const response = await api.post('/v1/login', { email, password });
-
+      
       Cookie.set('authorization', `Bearer ${response.data.token}`, { expires: 1 });
 
-      alert('Usuário logado com sucesso!');
-      navigate('/home');
+      const decodeToken = getCurrentUser();
+
+      if(decodeToken.isOrganizer){
+        navigate('/admin/home');
+      } else {
+        navigate('/home');
+      }
     } catch (error) {
       alert('Erro ao logar usuário!');
     }
