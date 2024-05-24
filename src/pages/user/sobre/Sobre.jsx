@@ -29,53 +29,53 @@ export default function Sobre() {
 				</h1>
 			</div>
 
-			<div class="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
+			<div className="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
 
-				<div class="flex flex-col items-center pb-10">
-					<img class="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/115481452?v=4" alt="Bonnie image" />
-					<h5 class="mb-1 text-xl font-medium text-gray-900">Dhymas Gabriel da Silva Candeias</h5>
-					<span class="text-sm text-gray-500">Full Stack Developer</span>
-					<div class="flex mt-4 md:mt-6">
-						<a href="https://github.com/DhymasG" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
+				<div className="flex flex-col items-center pb-10">
+					<img className="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/115481452?v=4" alt="Bonnie image" />
+					<h5 className="mb-1 text-xl font-medium text-gray-900">Dhymas Gabriel da Silva Candeias</h5>
+					<span className="text-sm text-gray-500">Full Stack Developer</span>
+					<div className="flex mt-4 md:mt-6">
+						<a href="https://github.com/DhymasG" target="_blank" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
 						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
+			<div className="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
 
-				<div class="flex flex-col items-center pb-10">
-					<img class="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/97753490?v=4" alt="Bonnie image" />
-					<h5 class="mb-1 text-xl font-medium text-gray-900">Fulgêncio Thierry Silva</h5>
-					<span class="text-sm text-gray-500">Full Stack Developer</span>
-					<div class="flex mt-4 md:mt-6">
-						<a href="https://github.com/FThierryDev" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
+				<div className="flex flex-col items-center pb-10">
+					<img className="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/97753490?v=4" alt="Bonnie image" />
+					<h5 className="mb-1 text-xl font-medium text-gray-900">Fulgêncio Thierry Silva</h5>
+					<span className="text-sm text-gray-500">Full Stack Developer</span>
+					<div className="flex mt-4 md:mt-6">
+						<a href="https://github.com/FThierryDev" target="_blank" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
 						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
+			<div className="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
 
-				<div class="flex flex-col items-center pb-10">
-					<img class="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/136404651?v=4" alt="Bonnie image" />
-					<h5 class="mb-1 text-xl font-medium text-gray-900">Luiz Eduardo Silva Costa</h5>
-					<span class="text-sm text-gray-500">Full Stack Developer</span>
-					<div class="flex mt-4 md:mt-6">
-						<a href="https://github.com/LuizEduardoSC" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
+				<div className="flex flex-col items-center pb-10">
+					<img className="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/136404651?v=4" alt="Bonnie image" />
+					<h5 className="mb-1 text-xl font-medium text-gray-900">Luiz Eduardo Silva Costa</h5>
+					<span className="text-sm text-gray-500">Full Stack Developer</span>
+					<div className="flex mt-4 md:mt-6">
+						<a href="https://github.com/LuizEduardoSC" target="_blank" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
 						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
+			<div className="w-full max-w-sm m-2 mb-4 bg-neutral-50 border border-orange-950 rounded-lg shadow dark:border-orange-900">
 
-				<div class="flex flex-col items-center pb-10">
-					<img class="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/65135567?v=4" alt="Bonnie image" />
-					<h5 class="mb-1 text-xl font-medium text-gray-900">Robson do Amaral Diógenes</h5>
-					<span class="text-sm text-gray-500">Full Stack Developer</span>
-					<div class="flex mt-4 md:mt-6">
-						<a href="https://github.com/robsonad07" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
+				<div className="flex flex-col items-center pb-10">
+					<img className="w-24 h-24 mb-3 mt-4 rounded-full shadow-lg" src="https://avatars.githubusercontent.com/u/65135567?v=4" alt="Bonnie image" />
+					<h5 className="mb-1 text-xl font-medium text-gray-900">Robson do Amaral Diógenes</h5>
+					<span className="text-sm text-gray-500">Full Stack Developer</span>
+					<div className="flex mt-4 md:mt-6">
+						<a href="https://github.com/robsonad07" target="_blank" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center 
 						text-white bg-orange-500 rounded-lg hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-orange-300 dark:bg-orange-400 dark:hover:bg-orange-300 dark:focus:ring-orange-600">GitHub</a>
 					</div>
 				</div>

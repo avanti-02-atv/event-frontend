@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import Cookie from 'js-cookie';
 
 const Navbar = () => {
-    const navigate = useNavigate();
   const [nav, setNav] = useState(false);
 
   const handleNav = () => {
@@ -13,9 +11,7 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // Add your logout logic here (e.g., clear user data, redirect to login)
     Cookie.remove('authorization');
-    navigate("/login");
   };
 
   const navItems = [
@@ -23,7 +19,7 @@ const Navbar = () => {
     { id: 2, text: 'EVENTOS', path: '/events' },
     { id: 3, text: 'SOBRE', path: '/sobre' },
     { id: 4, text: 'CONTATO', path: '/contact' },
-    { id: 5, text: 'SAIR' }, // Assuming empty path for logout
+    { id: 5, text: 'SAIR', path: '/' },
   ];
 
   return (
