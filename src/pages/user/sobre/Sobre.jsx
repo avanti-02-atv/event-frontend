@@ -3,7 +3,7 @@ import UserHeader from "../../../components/User/header/UserHeader";
 
 export default function Sobre() {
 	return (
-		<div className="w-screen h-screen flex flex-row flex-wrap bg-white justify-center items-center">
+		<div className="w-screen h-screen flex flex-row flex-wrap bg-white justify-center items-center overflow-x-hidden">
 			<UserHeader>
 				<button className="bg-orange-300 text-xl font-black leading-6 text-black px-6 py-2 rounded-md hover:ring-2 ring-orange-300">
 					Sair

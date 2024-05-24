@@ -2,6 +2,7 @@ import Header from "../../components/Admin/header/Header"
 import Footer from "../../components/Admin/footer/Footer";
 import api from "../../service/api/Api";
 import { useNavigate } from "react-router-dom";
+import InputMask from 'react-input-mask';
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
@@ -36,10 +37,10 @@ export const RegisterForm = () => {
       <div className="flex max-w-md size-full justify-center mx-auto flex-col">
         <div className="flex flex-col gap-4 shadow-lg px-6 py-8 rounded-lg">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder="nome" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" />
-            <input type="email" name="email" placeholder="email" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" />
-            <input type="text" name="phone" placeholder="telefone" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" />
-            <input type="password" name="password" placeholder="senha" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" />
+            <input type="text" name="name" placeholder="nome" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" required/>
+            <input type="email" name="email" placeholder="email" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" required/>
+            <InputMask mask="(99) 99999-9999" type="text" name="phone" placeholder="telefone" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" required/>
+            <input type="password" name="password" placeholder="senha" className="outline-none border-b placeholder-gray-400 border-b-gray-400 focus-visible:border-b-gray-600" required/>
 
             <button type="submit" className="bg-orange-300 text-black font-black text-lg rounded-md p-1 hover:bg-orange-400 transition-all">Cadastrar</button>
           </form>
