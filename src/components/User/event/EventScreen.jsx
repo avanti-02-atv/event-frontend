@@ -108,7 +108,7 @@ const EventsScreen = () => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="data" className="block text-sm font-medium text-gray-700">Data e Hora</label>
+                            <label htmlFor="data" className="block text-sm font-medium text-gray-700">Data e Hora Limite</label>
                             <input
                                 type="datetime-local"
                                 id="data"
@@ -131,9 +131,11 @@ const EventsScreen = () => {
                                             <div className="p-4">
                                                 <h3 className="text-gray-900 text-lg font-semibold mb-2">{event.nome}</h3>
                                                 <p className="text-gray-600 text-sm line-clamp-3 mb-4">{event.descricao}</p>
+                                                <p className="text-gray-600 text-sm line-clamp-3 mb-4">{event.Categoria.nome}</p>
+                                                <p className="text-gray-600 text-sm line-clamp-3 mb-4">{event.Local.CEP} - {event.Local.cidade} - {event.Local.nome}</p>
                                                 <div className="flex items-center justify-between">
                                                     <div className="flex items-center">
-                                                        <CalendarIcon className="w-4 h-4 mr-1 text-gray-500" /> {/* Ícone de calendário */}
+                                                        <CalendarIcon className="w-4 h-4 mr-1 text-gray-500" />
                                                         <p className="text-gray-500 text-xs">{format(new Date(event.data), 'dd/MM/yyyy HH:mm')}</p>
                                                     </div>
                                                 </div>
