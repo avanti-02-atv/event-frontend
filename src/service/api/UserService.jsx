@@ -1,9 +1,10 @@
 import api from "./Api";
 import Cookie from 'js-cookie';
 
-var authToken = Cookie.get('authorization');
+var authToken;
 
 export const createUser = async (data) => {
+  authToken = Cookie.get('authorization');
   try {
     const response = await api.post("/v1/user", data);
   } catch(err) {
@@ -12,6 +13,7 @@ export const createUser = async (data) => {
 }
 
 export const getUsers = async () => {
+  authToken = Cookie.get('authorization');
   try {
     const response = await api.get("/v1/users", {headers: {
       'Authorization': `${authToken}`
@@ -23,6 +25,7 @@ export const getUsers = async () => {
 }
 
 export const updateUser = async (id, data) => {
+  authToken = Cookie.get('authorization');
   try {
     const response = await api.put(`/v1/user/${id}`, data, {headers: {
       'Authorization': `${authToken}`
@@ -35,6 +38,7 @@ export const updateUser = async (id, data) => {
 }
 
 export const getUserById = async (id) => {
+  authToken = Cookie.get('authorization');
   try {
     const response = await api.get(`/v1/user/${id}`, {headers: {
       'Authorization': `${authToken}`
@@ -46,6 +50,7 @@ export const getUserById = async (id) => {
 }
 
 export const deleteUser = async (id) => {
+  authToken = Cookie.get('authorization');
   try {
     const response = await api.delete(`/v1/user/${id}`, {headers: {
       'Authorization': `${authToken}`
