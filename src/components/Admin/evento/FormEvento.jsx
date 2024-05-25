@@ -19,16 +19,19 @@ export default function FormEvento() {
     async function fetchData() {
       try {
         const categoriasData = await getCategorias();
-        setCategorias(categoriasData);
+        if(categoriasData){
+          setCategorias(categoriasData);
+        }
         const locaisData = await getLocais();
-        setLocais(locaisData);
+        if(locaisData){
+          setLocais(locaisData);
+        } 
 
         if (id) {
           const evento = await getEventoById(id);
           setNome(evento.nome);
           setDescricao(evento.descricao);
 
-          // Convertendo a data para o formato "YYYY-MM-DDTHH:MM"
           const date = new Date(evento.data);
           const formattedDate = date.toISOString().slice(0, 16);
           setData(formattedDate);
@@ -110,7 +113,7 @@ export default function FormEvento() {
               required
             >
               <option value="">Selecione uma categoria</option>
-              {categorias.map((categoria) => (
+              {categorias && categorias.map((categoria) => (
                 <option key={categoria.id} value={categoria.id}>
                   {categoria.nome}
                 </option>
@@ -128,7 +131,7 @@ export default function FormEvento() {
               required
             >
               <option value="">Selecione um local</option>
-              {locais.map((local) => (
+              {locais && locais.map((local) => (
                 <option key={local.id} value={local.id} title={`${local.CEP} - ${local.cidade} - ${local.nome}`}>
                   {`${local.CEP} - ${local.cidade} - ${local.nome}`}
                 </option>

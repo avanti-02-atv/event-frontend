@@ -16,8 +16,10 @@ export default function Evento() {
   async function getAllEventos() {
     try {
       const data = await getEventos();
-      setEventos(data);
-      setEventosRender(data);
+      if(data){
+        setEventos(data);
+        setEventosRender(data);
+      }
     } catch {
       console.error("Error getEventos");
     }
