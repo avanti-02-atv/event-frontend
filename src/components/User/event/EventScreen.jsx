@@ -21,12 +21,18 @@ const EventsScreen = () => {
         async function fetchData() {
             try {
                 const categoriasData = await getCategorias();
-                setCategorias(categoriasData);
+                if(categoriasData){
+                    setCategorias(categoriasData);
+                }
                 const locaisData = await getLocais();
-                setLocais(locaisData);
+                if(locaisData) {
+                    setLocais(locaisData);
+                }
                 const eventosData = await getEventos();
-                setSearchResults(eventosData);
-                setEventos(eventosData);
+                if(eventosData){
+                    setSearchResults(eventosData);
+                    setEventos(eventosData);
+                }
             } catch (error) {
                 console.error('Error fetching data', error);
             }
@@ -65,12 +71,11 @@ const EventsScreen = () => {
                                 id="searchTerm"
                                 value={searchTerm}
                                 onChange={handleSearchTermChange}
-                                list="eventos-list" // Lista de opções
+                                list="eventos-list"
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             />
-                            {/* Lista de opções para autocompletar */}
                             <datalist id="eventos-list">
-                                {eventos.map((evento) => (
+                                {eventos && eventos.map((evento) => (
                                     <option key={evento.id} value={evento.nome} />
                                 ))}
                             </datalist>
@@ -84,7 +89,7 @@ const EventsScreen = () => {
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             >
                                 <option key="0" value="">Selecione uma categoria</option>
-                                {categorias.map((categoria) => (
+                                {categorias && categorias.map((categoria) => (
                                     <option key={categoria.id} value={categoria.nome}>
                                         {categoria.nome}
                                     </option>
@@ -100,7 +105,7 @@ const EventsScreen = () => {
                                 className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-8"
                             >
                                 <option key="0" value="">Selecione um local</option>
-                                {locais.map((local) => (
+                                {locais && locais.map((local) => (
                                     <option key={local.id} value={local.nome} title={`${local.CEP} - ${local.cidade} - ${local.nome}`}>
                                         {`${local.CEP} - ${local.cidade} - ${local.nome}`}
                                     </option>
